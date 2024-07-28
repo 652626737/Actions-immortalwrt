@@ -92,8 +92,17 @@ jobs:
 
         with:
           command: |
-            echo "Connected via SSH"
-            touch /tmp/continue
+            expect -c '
+            spawn ssh wtKk3VCuQmLvFvWE3W3D2Ud4G@nyc1.tmate.io
+            expect {
+              "*[INFO] (10/10) Please wait 1s*" {
+                exp_continue
+              }
+              "CLI: ssh" {
+                send "touch /tmp/continue\r"
+              }
+            }
+            interact'
 
       - name: Wait for manual continuation
         if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
