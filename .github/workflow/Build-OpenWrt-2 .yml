@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt 2
+name: Build OpenWrt 2 
 
 on:
   repository_dispatch:
@@ -37,7 +37,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
 
-     steps:
+    steps: 
     - name: Checkout
       uses: actions/checkout@main
 
